@@ -16,7 +16,7 @@ class SlackNotificationService
         $blocks = [];
 
         foreach ($messages as $message) {
-            $title = $message['title'];
+            $titleDisplay = $message['titleDisplay'];
             $timeSpent = $message['timeSpent'];
             $estimation = $message['estimation'];
             $percentage = ($timeSpent / $estimation) * 100;
@@ -33,7 +33,7 @@ class SlackNotificationService
                 'color' => $color,
                 'fields' => [
                     [
-                        'title' => $title,
+                        'title' => $titleDisplay,
                         'value' => sprintf("%s / %s \t | \t (%.1f%%)", $this->formatTime($timeSpent), $this->formatTime($estimation), $percentage),
                         'short' => false,
                     ],

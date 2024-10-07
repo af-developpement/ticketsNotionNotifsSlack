@@ -40,7 +40,9 @@ class NotionService
         $tickets = [];
 
         foreach ($data['results'] as $result) {
+            $identifiant = $result['properties']['Identifiant']['unique_id'];
             $tickets[] = [
+                'titleDisplay' => $identifiant['prefix'] . "-" . $identifiant['number'] . " - " . $result['properties']['Name']['title'][0]['plain_text'],
                 'title' => $result['properties']['Name']['title'][0]['plain_text'] ?? 'N/A',
                 'estimation' => (float)$result['properties']['Estimation (en h)']['number'] ?? 0,
             ];

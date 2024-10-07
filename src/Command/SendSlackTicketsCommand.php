@@ -37,12 +37,13 @@ class SendSlackTicketsCommand extends Command
 
             $messages = [];
             foreach ($tickets as $ticket) {
+                $titleDisplay = $ticket['titleDisplay'];
                 $title = $ticket['title'];
                 $estimation = $ticket['estimation'];
                 $timeSpent = $this->notionService->getTimeSpentForTicket($title);
 
                 $messages[] = [
-                    'title' => $title,
+                    'titleDisplay' => $titleDisplay,
                     'timeSpent' => $timeSpent,
                     'estimation' => $estimation
                 ];
